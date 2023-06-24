@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket Thing1</title>
 </head>
-
 <body>
-    Test!
-
+    Client page!
 </body>
+<script>
+    // Create WebSocket connection.
+    const socket = new WebSocket('ws://localhost:3000');
+
+    // Connection opened
+    socket.addEventListener('open', function (event) {
+        console.log('Connected to WS Server')
+    });
+</script>
 </html>
