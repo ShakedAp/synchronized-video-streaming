@@ -3,22 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer type="text/javascript" src="client.js"></script>
     <title>Client</title>
 </head>
 <body>
     Client page!
     <br/>    
-    <video id="videoPlayer" width="650" controls disablePictureInPicture controlsList="nodownload" autoplay>
+    <video id="videoPlayer" width="650" controls disablePictureInPicture controlsList="nodownload noplaybackrate" muted>
         <source src="/video" type="video/mp4" />
     </video>
 </body>
-<script>
-    // Create WebSocket connection.
-    const socket = new WebSocket('ws://localhost:3000');
 
-    // Connection opened
-    socket.addEventListener('open', function (event) {
-        console.log('Connected to WS Server')
-    });
-</script>
 </html>
