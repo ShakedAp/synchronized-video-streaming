@@ -3,9 +3,10 @@
 
 const fs = require("fs");
 const express = require('express');
+const bodyParser = require('body-parser');
+const WebSocket = require('ws');
 const app = express();
 const server = require('http').createServer(app);
-const WebSocket = require('ws');
 
 const wss = new WebSocket.Server({ server:server });
 const settings = JSON.parse(fs.readFileSync("settings.json"));
@@ -69,12 +70,26 @@ wss.on('connection', function connection(ws) {
 
 });
 
-
+console.log(__dirname);
 app.use(express.static(__dirname));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.get("/", function (req, res) {
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(__dirname + "/login.html");
 });
 
+app.post("/login", function (req, res)
+{
+    const data = req.body;
+    if(!data)
+        res.sendStatus(400);
+    console.log(data.password);
+    if(data.password == settings.password)
+        res.sendFile(__dirname + "/main.html");
+    else
+        res.sendFile(__dirname + "/login.html");
+});
 
 app.get("/video", function (req, res) {
     // Ensure there is a range given for the video
@@ -112,7 +127,8 @@ app.get("/video", function (req, res) {
     videoStream.pipe(res);
 });
 
-server.listen(settings.server_port, settings.server_ip, () => console.log(`Listening on port: 3000`));
+server.listen(settings.server_port, settings.server_ip, 
+        () => console.log(`Server started at ${settings.server_ip}:${settings.server_port}`));
 
 
 function get_time(){

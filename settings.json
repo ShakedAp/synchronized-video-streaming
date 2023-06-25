@@ -1,5 +1,6 @@
 {
     "server_ip": "192.168.68.118",
     "server_port": 3000,
-    "video_path": "videos/bigbuck.mp4"
+    "video_path": "videos/bigbuck.mp4",
+    "password": "pass"
 }
