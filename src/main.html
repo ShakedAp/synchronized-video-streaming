@@ -3,15 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="main.css">
     <script defer type="text/javascript" src="client.js"></script>
     <title>Client</title>
 </head>
 <body>
-    Client page!
-    <br/>    
-    <video id="videoPlayer" width="650" controls disablePictureInPicture controlsList="nodownload noplaybackrate" muted>
-        <source src="/video" type="video/mp4" />
-    </video>
+    <div class="container">
+        <header>
+            <h1>Watch-Together</h1>
+        </header>
+        <div class="video-wrapper">
+            <video id="videoPlayer" controls disablePictureInPicture controlsList="nodownload noplaybackrate" muted>
+                <source src="/video" type="video/mp4" />
+            </video>
+        </div>
+        <div class="user-list">
+            <h2>People Watching:</h2>
+            <ul>
+                <li>User 1</li>
+                <li>User 2</li>
+                <li>User 3</li>
+                <!-- Add more list items for additional users -->
+            </ul>
+        </div>
+    </div>
 </body>
-
 </html>
