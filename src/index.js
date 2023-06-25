@@ -4,6 +4,7 @@
 const fs = require("fs");
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require("express-session");
 const WebSocket = require('ws');
 const app = express();
 const server = require('http').createServer(app);
@@ -74,9 +75,19 @@ console.log(__dirname);
 app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(session({
+    secret: 'secret key',
+    resave: false,
+    saveUninitialized: false,
+    logged: false
+    
+}));
 
 app.get("/", function (req, res) {
-    res.sendFile(__dirname + "/login.html");
+    if (req.session.logged)
+        res.sendFile(__dirname + "/main.html");
+    else
+        res.sendFile(__dirname + "/login.html");
 });
 
 app.post("/login", function (req, res)
@@ -86,9 +97,15 @@ app.post("/login", function (req, res)
         res.sendStatus(400);
     console.log(data.password);
     if(data.password == settings.password)
+    {
+        req.session.logged = true;
         res.sendFile(__dirname + "/main.html");
+    }
     else
+    {
+        req.session.logged = false;
         res.sendFile(__dirname + "/login.html");
+    }
 });
 
 app.get("/video", function (req, res) {
