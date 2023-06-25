@@ -71,8 +71,7 @@ wss.on('connection', function connection(ws) {
 
 });
 
-console.log(__dirname);
-app.use(express.static(__dirname));
+app.use('/', express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
@@ -93,9 +92,10 @@ app.get("/", function (req, res) {
 app.post("/login", function (req, res)
 {
     const data = req.body;
+    console.log(data);
     if(!data)
         res.sendStatus(400);
-    console.log(data.password);
+
     if(data.password == settings.password)
         req.session.logged = true;
     else

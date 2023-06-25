@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
     <title>Login Page</title>
 </head>
 <body>
-    <form action="/login" method="post">
-        <input name="password" type="password" id="password">
-        <button type="submit">Log In</button>
-    </form>
+    
+    <div class="login-page">
+      <h1> Login To Watch-Together Server</h1>
+        <div class="form">
+          <form action="/login" method="post" class="login-form">
+            <input type="text" placeholder="username" name="username"/>
+            <input type="password" placeholder="password" name="password"/>
+            <button>login</button>
+          </form>
+        </div>
+      </div>
 </body>
 </html>
