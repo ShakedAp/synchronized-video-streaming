@@ -8,6 +8,7 @@ const server = require('http').createServer(app);
 const WebSocket = require('ws');
 
 const wss = new WebSocket.Server({ server:server });
+const settings = JSON.parse(fs.readFileSync("settings.json"));
 
 const THRESH_IGNORANCE = 250;
 let users_amount = 0;
@@ -83,7 +84,7 @@ app.get("/video", function (req, res) {
     }
   
     // get video stats (about 61MB)
-    const videoPath = "videos/Shreksophone_Original.mp4";
+    const videoPath = settings.video_path;
     const videoSize = fs.statSync(videoPath).size;
   
     // Parse Range
@@ -111,7 +112,7 @@ app.get("/video", function (req, res) {
     videoStream.pipe(res);
 });
 
-server.listen(3000, () => console.log(`Listening on port: 3000`));
+server.listen(settings.server_port, settings.server_ip, () => console.log(`Listening on port: 3000`));
 
 
 function get_time(){

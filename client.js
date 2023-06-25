@@ -1,6 +1,5 @@
 const vid = document.querySelector('video')
-const socket = new WebSocket('ws://192.168.68.118:3000');
-
+const socket = new WebSocket(`ws://${window.location.hostname}:${window.location.port}`);
 // if the new tms is within this margin of the current tms, then the change is ignored for smoother viewing
 const PLAYING_THRESH = 1
 const PAUSED_THRESH = 0.01
@@ -128,6 +127,14 @@ vid.onended = () => {
 function get_global_time(delta = 0) {
 	let d = new Date();
 	return d.getTime() + delta;
+}
+
+async function get_settings() {
+    let s = null;
+    await fetch('settings.json')
+                            .then((response)=>response.json())
+                            .then((responseJson)=>{s = responseJson});
+    return s;
 }
 
 function median(values) {
