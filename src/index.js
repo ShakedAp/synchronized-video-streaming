@@ -97,15 +97,11 @@ app.post("/login", function (req, res)
         res.sendStatus(400);
     console.log(data.password);
     if(data.password == settings.password)
-    {
         req.session.logged = true;
-        res.sendFile(__dirname + "/main.html");
-    }
     else
-    {
         req.session.logged = false;
-        res.sendFile(__dirname + "/login.html");
-    }
+
+    res.redirect("/");
 });
 
 app.get("/video", function (req, res) {
