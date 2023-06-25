@@ -63,16 +63,16 @@ socket.addEventListener("message", (event) => {
 
         console.log(`%cGap was ${proposed_time - vid.currentTime}`, 'font-size:12px; color:purple')
         if (state.playing){ 
+            // tolerance while the video is playing
             if(gap > PLAYING_THRESH){
-                // tolerance while the video is playing
                 vid.currentTime = proposed_time
             }
             vid.play()
         }
         else{
             vid.pause()
+            // condition to prevent an unnecessary seek
             if (gap > PAUSED_THRESH){
-                // condition to prevent an unnecessary seek
                 vid.currentTime = proposed_time
             }
         }
@@ -142,7 +142,7 @@ function median(values) {
 
 	values.sort((x,y) => (x-y));
 	let half = Math.floor(values.length / 2);
-	if (values.length % 2){
+	if (values.length % 2) {
 		return values[half];
 	}
 	return (values[half - 1] + values[half]) / 2.0;

@@ -31,33 +31,3 @@ video {
     border-radius: 10px;
     border: 2px solid black;
 }
-
-.user-list {
-    margin-top: 20px;
-}
-
-.user-list h2 {
-    margin-bottom: 10px;
-    font-size: 1.5rem;
-    color: #333;
-}
-
-.user-list ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.user-list li {
-    margin-bottom: 5px;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-}
-
-.user-list li:hover {
-    background-color: #e0e0e0;
-}
-
-.user-list li:last-child {
-    margin-bottom: 0;
-}

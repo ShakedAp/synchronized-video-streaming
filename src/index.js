@@ -79,7 +79,6 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     logged: false
-    
 }));
 
 app.get("/", function (req, res) {
