@@ -1,6 +1,3 @@
-// https://www.npmjs.com/package/ws#api-docs
-// https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
-
 const fs = require("fs");
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -91,7 +88,6 @@ app.get("/", function (req, res) {
 app.post("/login", function (req, res)
 {
     const data = req.body;
-    console.log(data);
     if(!data)
         res.sendStatus(400);
 
